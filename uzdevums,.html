@@ -1,0 +1,65 @@
+!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="heightInput">height Input(cm)</label>
+    <input type="number" id="heightInput" />
+    <label for="weightInput">weightInput(kg)</label>
+    <input type="number" id="weightInput" />
+    <button id="mybutton">Aprēķināt ĶMI</button>
+    <p id="result"></p>
+    <script>
+      let height = document.getElementById("heightInput");
+      let weight = document.getElementById("weightInput");
+      let button = document.getElementById("mybutton");
+      let result = document.getElementById("result");
+
+      button.addEventListener("click", function () {
+        let heightValue = parseFloat(height.value) / 100;
+        let weightValue = parseFloat(weight.value);
+
+        let bmi = calculateBMI(weightValue, heightValue);
+
+        result.textContent = `Your BMI is: ${bmi.toFixed(2)} - ${getBMICategory(
+          bmi
+        )}`;
+      });
+
+      function calculateBMI(weight, height) {
+        return weight / (height * height);
+      }
+      function getBMICategory(bmi) {
+        if (bmi < 18.5) {
+          return "Nepietiekams svars";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+          return "Normāls svars";
+        } else if (bmi >= 25 && bmi <= 29.9) {
+          return "Liekais svars";
+        } else {
+          return "hit the gym";
+        }
+      }
+
+      //Uzraksti JavaScript kodu, lai:
+      // Lasītu vērtības no ievades laukiem un aprēķinātu ĶMI ar formulu:
+      //ĶMI = svars / (augums * augums)
+      // Noteiktu ĶMI kategoriju, izmantojot nosacījumus:
+      // <18.5: Nepietiekams svars
+      // 18.5–24.9: Normāls svars
+      // 25–29.9: Liekais svars
+      // >=30: Aptaukošanās
+      // Attēlot rezultātu HTML elementā id="result". Piem., Jūsu ĶMI ir 20, kas atbilst kategorijai: Normāls svars.
+      //Pārbaudi ievades laukus ar ciklu, lai pārliecinātos, ka tie nav tukši.
+
+      //Izveido HTML failu ar šādiem elementiem:
+      //Ievades lauks auguma garumam metros (id="heightInput").
+      //Ievades lauks svaram kilogramos (id="weightInput").
+      //Poga ar uzrakstu "Aprēķināt ĶMI" (id="calculateBtn").
+      //Paragrāfa tags rezultāta attēlošanai (id="result").
+    </script>
+  </body>
+</html>
